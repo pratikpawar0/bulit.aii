@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
@@ -32,12 +33,14 @@ export default function RootLayout({ children }) {
             }}
           >
             <ConvexClientProvider>
-              <Header />
-              <main className="bg-slate-900 min-h-screen text-white overflow-x-hidden">
-                <Toaster richColors />
-
-                {children}
-              </main>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="bg-slate-900 flex-1 text-white overflow-x-hidden">
+                  <Toaster richColors />
+                  {children}
+                </main>
+                <Footer />
+              </div>
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>
